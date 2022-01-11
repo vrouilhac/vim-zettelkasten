@@ -1,0 +1,5 @@
+--langdef=mdzetteltags
+--langmap=mdzetteltags:.ztl
+--regex-mdzetteltags=/[^@](r_[a-z0-9]+)/\1/r,references, zettel reference/
+--regex-mdzetteltags=/[^@](a_[a-z0-9]+)/\1/a,links, zettel link to another one/
+--exclude=.obsidian

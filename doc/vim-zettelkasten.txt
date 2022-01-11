@@ -1,0 +1,97 @@
+*vim-zettelkasten* plugin to use Zettelkasten Workflow.
+
+======================================================
+Summary
+
+    1. Introduction...............|introduction|
+    2. Syntax.....................|syntax|
+    3. FileType...................|file-type|
+    4. A Sample Folder............|sample|
+    5. Features & Next ?..........|features|
+
+======================================================
+Introduction                            *introduction*
+
+Vim Zettelkasten aims to allow the use of the
+zettelkasten method inside of vim. This plugin is
+willing to be as minimalistic as possible to avoid
+unecessary noises.
+
+To use it, the easiest way is to use pathogen, thanks
+to Tim Pope. Then install clone this from the repo
+inside your bundle folder.
+
+======================================================
+Syntax                                        *syntax*
+
+The first thing you'll notice is the syntax.
+
+Here are syntax that are covered.
+
+a_<ANY_ID> and @a_<ANY_ID> : this represents any 
+notes that are in your archive.
+
+r_<ANY_ID> and @r_<ANY_ID : this represents any
+notes that are in your references, there you can
+put your references, links, etc...
+
+@ means a link to original notes. So @r_17 links to 
+a notes that contains r_17. If you use ctags and press
+the following keystrokes CTRL-] you'll be redirected 
+to the note that contains r_17. This is made possible
+because of the .ctags file at the root of zettelkasten
+folder.
+
+--- --- are region that are highlighted and use as 
+metadata. 
+e.g
+
+---
+  ID: r_7
+  Title: The role of banks in our economy
+---
+
+References : This word is highlighted because i use
+it at the bottom of each file to represent further link
+to continue a zettel or link to references.
+
+======================================================
+FileType                                   *file-type*
+
+As i said above, every file should end with ".ztl"
+extension, otherwise the plugin will not work 
+correctly
+
+
+======================================================
+A Sample Project                              *sample*
+
+There is a sample folder at the root of this project, 
+which is not part of the code vim need for this plugin,
+that i you can copy in another location. It contains 
+three folder that i personally use for my own 
+zettelkasten. Inside this folder are some sample .ztl
+files. No matter your project structure you will need 
+to create files that ends with the extension ".ztl". 
+
+======================================================
+Features and Next ?                         *features* 
+
+- [x] Syntax Highlight
+- [x] ctags and links generation
+- [ ] archives & references autocompletion
+- [ ] search improvement
+- [ ] right panel with summary of tags
+
+======================================================
+
+                    Made with love
+                          by 
+                    Vincent Rouilhac
+
+If you like this plugin, please leave me a message on
+github and if you have any idea of improvement feel
+free to leave an issue on github i'll try to see what 
+i can do.
+
+======================================================

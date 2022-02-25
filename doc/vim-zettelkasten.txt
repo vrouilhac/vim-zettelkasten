@@ -4,7 +4,7 @@
 Summary
 
     1. Introduction...............|introduction|
-    2. Syntax.....................|syntax|
+    2. Syntax.....................|ztl-syntax|
     3. FileType...................|file-type|
     4. A Sample Folder............|sample|
     5. Features & Next ?..........|features|
@@ -22,7 +22,7 @@ to Tim Pope. Then install clone this from the repo
 inside your bundle folder.
 
 ======================================================
-Syntax                                        *syntax*
+Syntax                                        *ztl-syntax*
 
 The first thing you'll notice is the syntax.
 

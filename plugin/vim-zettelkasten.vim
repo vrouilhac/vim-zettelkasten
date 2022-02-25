@@ -4,10 +4,10 @@
 " Maintainer  : Vincent Rouilhac [vincentrouilhac.com ; vrouilhacpe@gmail.com]
 " Version     : 1.0
 
-if exists(g:loaded_zettelkasten)
-  finish
-endif
-let g:loaded_zettelkasten = 1
+" if exists(g:loaded_zettelkasten)
+"   finish
+" endif
+" let g:loaded_zettelkasten = 1
 
 " map <unique> <Leader>a <Plug>TypecorrAdd
 

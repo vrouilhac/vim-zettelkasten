@@ -4,13 +4,13 @@
 " Maintainer  : Vincent Rouilhac [vincentrouilhac.com ; vrouilhacpe@gmail.com]
 " Version     : 1.2
 
-if exists(g:loaded_zettelkasten)
+if exists("g:loaded_zettelkasten")
   finish
 endif
 let g:loaded_zettelkasten = 1
 
 " Options
-if !exists(g:ztl_default_slipbox_location)
+if !exists("g:ztl_default_slipbox_location")
   let g:ztl_default_slipbox_location = 'slipbox'
 endif
 

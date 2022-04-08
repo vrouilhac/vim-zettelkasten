@@ -29,7 +29,7 @@ func s:popup_close_callback(id, result)
   call s:open_file(file_name) 
 endfunc
 
-func FilterHandler(id, key)
+func s:filter_handler(id, key)
   echom a:id
   echom a:key
   if a:key == 'o'
@@ -54,10 +54,10 @@ endfunc
 func s:find_zettels()
   echom win_getid()
   let i = split(system('ls ' . g:ztl_default_slipbox_location), '\n')
-  let id = popup_menu(i, #{ filter: 'FilterHandler', callback: 's:popup_close_callback' })
+  let id = popup_menu(i, #{ filter: 's:filter_handler', callback: 's:popup_close_callback' })
 endfunc
 
-nnoremap ,zf :call s:find_zettels()<CR>
+nnoremap ,zf :call <SID>find_zettels()<CR>
 nnoremap ,zh :-1read $HOME/.vim/bundle/vim-zettelkasten/snippets/ztl-metadata.ztl<cr>2jA
 nnoremap ,zr :-1read $HOME/.vim/bundle/vim-zettelkasten/snippets/ztl-refs.ztl<CR>jA
 nnoremap ,zt :! node $HOME/.vim/bundle/vim-zettelkasten/scripts/ztl_timestamp.js > $HOME/.vim/bundle/vim-zettelkasten/scripts/timestamp.txt<CR>$:read $HOME/.vim/bundle/vim-zettelkasten/scripts/timestamp.txt<CR>d$k$pjddk

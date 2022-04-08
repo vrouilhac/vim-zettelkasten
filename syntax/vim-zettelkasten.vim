@@ -1,6 +1,6 @@
 " Vim syntax for zettelkasten workflow
 " Maintainer    : Vincent Rouilhac
-" Last update   : 2021 Jan 11 <vincentrouilhac.com>
+" Last update   : 2022 Jan 11 <vincentrouilhac.com>
 
 if exists("b:current_syntax")
   finish

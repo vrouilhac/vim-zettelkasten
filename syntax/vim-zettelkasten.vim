@@ -12,7 +12,7 @@ syn keyword zettelkastenReferences References
 syn match zettelkastenMetadataInfo ':[[:space:]].\+' contained
 syn match zettelkastenArchiveLink '[[:space:]]@*a_[a-z0-9]\+'
 syn match zettelkastenReferenceLink '[[:space:]]@*r_[a-z0-9]\+'
-syn match zettelkastenTag '#\S\+[[:space:]]'
+syn match zettelkastenTag '#\S\+'
 
 syn region zettelkastenMetadata start='---' end='---' contains=zettelkastenMetadataInfo,zettelkastenArchiveLink,zettelkastenReferenceLink
 syn region zettelkastenWebLink start='\[\[' end='\]\]'

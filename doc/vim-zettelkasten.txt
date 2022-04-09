@@ -1,28 +1,36 @@
-*vim-zettelkasten* plugin to use Zettelkasten Workflow.
+*vim-zettelkasten* Plugin to use Zettelkasten Workflow.
 
 ======================================================
 Summary
 
-    1. Introduction...............|introduction|
+    1. Introduction...............|ztl-introduction|
     2. Syntax.....................|ztl-syntax|
-    3. FileType...................|file-type|
-    4. A Sample Folder............|sample|
-    5. Features & Next ?..........|features|
+    3. Features...................|ztl-features|
+    4. FileType...................|ztl-file-type|
+    5. A Sample Folder............|ztl-sample|
+    6. Plugin Options.............|ztl-options|
+    7. Features & Next ?..........|ztl-features|
 
 ======================================================
-Introduction                            *introduction*
+Introduction                        *ztl-introduction*
 
 Vim Zettelkasten aims to allow the use of the
 zettelkasten method inside of vim. This plugin is
 willing to be as minimalistic as possible to avoid
 unecessary noises.
 
+!!! This plugin is mainly vim/vimscript learning 
+purpose, take the time to read through scripts and make
+sure you agree with how i built them before installing
+and use this plugin. I use it on a daily basis though,
+but even that can't prevent every possible bugs.
+
 To use it, the easiest way is to use pathogen, thanks
 to Tim Pope. Then install clone this from the repo
 inside your bundle folder.
 
 ======================================================
-Syntax                                        *ztl-syntax*
+Syntax                                    *ztl-syntax*
 
 The first thing you'll notice is the syntax.
 
@@ -56,7 +64,31 @@ it at the bottom of each file to represent further link
 to continue a zettel or link to references.
 
 ======================================================
-FileType                                   *file-type*
+Features                                *ztl-features*
+
+Some new features are here, and some others are yet to
+come. 
+There are, for now, no way to remap the default mapping
+but i'll add some later.
+
+[NEW]
+Search through your archive
+  current mapping : ,zfz
+
+Search through your tags
+  current mapping : ,zft
+
+Add metadata header
+  current mapping : ,zh
+
+Add date time	     
+  current mapping : ,zt
+
+Add reference section 
+  current mapping : ,zr
+
+======================================================
+FileType                               *ztl-file-type*
 
 As i said above, every file should end with ".ztl"
 extension, otherwise the plugin will not work 
@@ -64,7 +96,7 @@ correctly
 
 
 ======================================================
-A Sample Project                              *sample*
+A Sample Project                          *ztl-sample*
 
 There is a sample folder at the root of this project, 
 which is not part of the code vim need for this plugin,
@@ -75,13 +107,32 @@ files. No matter your project structure you will need
 to create files that ends with the extension ".ztl". 
 
 ======================================================
-Features and Next ?                         *features* 
+Plugin Options	                          *ztl-sample*
+
+The plugin now accepts some customization, and will
+enable even more later.
+
+For now the customization is about your slipbox folder
+path.
+
+  let g:ztl_default_slipbox_location = 'slipbox'
+
+The path should respect the way you would use it as a
+shell command, as it is being used with grep.
+
+  let g:ztl_default_slipbox_location = './archive'
+
+======================================================
+Features and Next ?                     *ztl-features* 
 
 - [x] Syntax Highlight
 - [x] ctags and links generation
 - [ ] archives & references autocompletion
-- [ ] search improvement
-- [ ] right panel with summary of tags
+- [x] search improvement (archive)
+- [x] A way to add new zettel improved
+- [x] Tag list and navigation
+- [ ] Live search update
+- [ ] References search and navigation
 
 ======================================================
 

@@ -16,6 +16,7 @@ syn match zettelkastenTag '#\S\+'
 
 syn region zettelkastenMetadata start='---' end='---' contains=zettelkastenMetadataInfo,zettelkastenArchiveLink,zettelkastenReferenceLink
 syn region zettelkastenWebLink start='\[\[' end='\]\]'
+syn region zettelkastenAuthorTag start='#\[\[' end='\]\]' oneline
 
 hi def link zettelkastenReferences    References
 hi def link zettelkastenMetadataInfo  MetadataInfo
@@ -24,6 +25,7 @@ hi def link zettelkastenReferenceLink ReferenceLink
 hi def link zettelkastenMetadata      Metadata
 hi def link zettelkastenWebLink       WebLink
 hi def link zettelkastenTag	      Tag
+hi def link zettelkastenAuthorTag     AuthorTag
 
 hi References ctermfg=94 cterm=bold
 hi MetadataInfo ctermfg=75
@@ -32,3 +34,4 @@ hi ReferenceLink ctermfg=72 cterm=bold
 hi Metadata ctermfg=59
 hi WebLink ctermfg=219
 hi Tag ctermfg=242 cterm=bold 
+hi AuthorTag ctermfg=240 cterm=bold

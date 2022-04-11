@@ -14,11 +14,17 @@ if !exists("g:ztl_default_slipbox_location")
   let g:ztl_default_slipbox_location = 'slipbox'
 endif
 
+if !exists("g:ztl_default_references_location")
+  let g:ztl_default_references_location = 'references'
+endif
+
+" ---
+
 func s:open_file(filename)
   execute 'edit' a:filename
 endfunc
 
-func s:popup_close_callback(id, result)
+func s:popup_close_callback_zettels(id, result)
   if a:result == -1
     return
   endif
@@ -27,6 +33,18 @@ func s:popup_close_callback(id, result)
   let file_name = g:ztl_default_slipbox_location . '/' . i[a:result-1]
   call s:open_file(file_name) 
 endfunc
+
+func s:popup_close_callback_references(id, result)
+  if a:result == -1
+    return
+  endif
+
+  let i = split(system('ls ' . g:ztl_default_references_location), '\n')
+  let file_name = g:ztl_default_references_location . '/' . i[a:result-1]
+  call s:open_file(file_name) 
+endfunc
+
+
 
 func s:popup_close_tag_found_callback(id, result)
   if a:result == -1
@@ -56,12 +74,6 @@ func s:filter_handler(id, key)
     call popup_close(a:id, 1)
     return 1 
   endif
-  if a:key == 'a'
-    let filename = input("File name: ")
-    call s:open_file(g:ztl_default_slipbox_location . '/' . filename)
-    call popup_close(a:id, -1)
-    return 1
-  endif
   if a:key == '<C-C>'
     call popup_close(a:id, -1)
     return 1
@@ -70,9 +82,51 @@ func s:filter_handler(id, key)
   return popup_filter_menu(a:id, a:key)
 endfunc
 
+func s:filter_handler_references(id, key)
+  call s:filter_handler(a:id, a:key)
+
+  if a:key == 'a'
+    let filename = input("File name: ")
+    call s:open_file(g:ztl_default_references_location . '/' . filename)
+    call popup_close(a:id, -1)
+    return 1
+  endif
+endfunc
+
+func s:filter_handler_zettels(id, key)
+  call s:filter_handler(a:id, a:key)
+
+  if a:key == 'a'
+    let filename = input("File name: ")
+    call s:open_file(g:ztl_default_slipbox_location . '/' . filename)
+    call popup_close(a:id, -1)
+    return 1
+  endif
+endfunc
+
 func s:find_zettels()
   let i = split(system('ls ' . g:ztl_default_slipbox_location), '\n')
-  let id = popup_menu(i, #{ filter: 's:filter_handler', callback: 's:popup_close_callback' })
+  call s:open_popup_menu('zettels', i)
+  " let id = popup_menu(i, #{ filter: 's:filter_handler', callback: 's:popup_close_callback_zettels' })
+endfunc
+
+func s:open_popup_menu(menu_kind, data)
+  let l:menu_handler_name = 's:filter_handler_zettels'
+  let l:menu_callback_name = 's:popup_close_callback_zettels'
+
+  if a:menu_kind == 'references'
+    let l:menu_handler_name = 's:filter_handler_references' 
+    let l:menu_callback_name = 's:popup_close_callback_references'
+  endif
+
+  let id = popup_menu(a:data, #{ filter: l:menu_handler_name, callback: l:menu_callback_name })
+  return id
+endfunc
+
+func s:find_references()
+  let i = split(system('ls ' . g:ztl_default_references_location), '\n')
+  call s:open_popup_menu('references', i)
+  " let id = popup_menu(i, #{ filter: 's:filter_handler', callback: 's:popup_close_callback_zettels' })
 endfunc
 
 func s:get_ztl_tags_list()
@@ -102,6 +156,7 @@ func s:find_tags()
 endfunc
 
 nnoremap ,zfz :call <SID>find_zettels()<CR>
+nnoremap ,zfr :call <SID>find_references()<CR>
 nnoremap ,zft :call <SID>find_tags()<CR>
 nnoremap ,zh :-1read $HOME/.vim/bundle/vim-zettelkasten/snippets/ztl-metadata.ztl<cr>2jA
 nnoremap ,zr :-1read $HOME/.vim/bundle/vim-zettelkasten/snippets/ztl-refs.ztl<CR>jA

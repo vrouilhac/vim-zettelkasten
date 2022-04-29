@@ -119,7 +119,23 @@ func s:open_popup_menu(menu_kind, data)
     let l:menu_callback_name = 's:popup_close_callback_references'
   endif
 
-  let id = popup_menu(a:data, #{ filter: l:menu_handler_name, callback: l:menu_callback_name })
+  if a:menu_kind == 'tags'
+    let l:menu_handler_name = 's:filter_handler' 
+    let l:menu_callback_name = 's:popup_tags_close_callback'
+  endif
+
+  hi BorderColor  ctermfg=173
+
+  " TODO: create a sort function and add it to sort()
+  let id = popup_menu(sort(a:data), #{ 
+	\ filter: l:menu_handler_name,
+	\ callback: l:menu_callback_name,
+	\ border: [],
+	\ borderchars: ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
+	\ borderhighlight: ["BorderColor"],
+	\ padding: [2, 8, 2, 8],
+	\ title: a:menu_kind
+	\ })
   return id
 endfunc
 
@@ -152,7 +168,8 @@ endfunc
 
 func s:find_tags()
   let l:tags_list = s:get_ztl_tags_list()
-  let id = popup_menu(l:tags_list, #{ filter: 's:filter_handler', callback: 's:popup_tags_close_callback' })
+  " let id = popup_menu(l:tags_list, #{ filter: 's:filter_handler', callback: 's:popup_tags_close_callback' })
+  call s:open_popup_menu('tags', l:tags_list)
 endfunc
 
 nnoremap ,zfz :call <SID>find_zettels()<CR>
